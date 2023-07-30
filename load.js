@@ -61,7 +61,7 @@ $('.alert').hide();
 $("#to_step1").click(function() {
     hide('#step0');
     show('#step1');
-    setNormalizeFlag(1)
+    setNormalizeFlag(1);
 })
 
 $("#to_step2").click(function() {
@@ -93,18 +93,27 @@ $("input[name='type']").click(function() {
 
 function startDrawing(dataTopic) {
     if (dataTopic == 0) {
+        title = "Global births and deaths (1950 - 2023)"
         d3.csv("Data/World_Birth_Death.csv").then(drawSceneOne())
         currentScene = 0
     } else if (dataTopic == 1) {
+        title = "Global deaths (1955 - 1965)"
         d3.csv("Data/Region_Death.csv").then(drawSceneTwo())
         currentScene = 1
     } else if (dataTopic == 2) {
+        title = "Global deaths (2015 - 2023)"
         d3.csv("Data/Region_Death.csv").then(drawSceneThree())
         currentScene = 2
     } else if (dataTopic == 3) {
+        startTitleVal = "Gloabl"
+        if (selectedRegion != "All") {
+            startTitleVal = selectedRegion + " Region"
+        }
+        title = startTitleVal + " deaths (" + yearStart + " - " + yearEnd + ")"
         d3.csv("Data/Region_Death.csv").then(drawSceneFour())
         currentScene = 3
     }
+    document.getElementById("plotTitle").innerHTML = title
 }
 
 function drawSceneOne(){
@@ -209,7 +218,7 @@ function drawSceneOne(){
             if (normalize) {
                 label = "Death rate increased by " + l.data.NormalizedDeaths.toFixed(3) + "% from 1950" 
             } else {
-                label = "" + Math.round(l.data.Deaths * 1000) + " people dead"
+                label = "" + numberWithCommas(Math.round(l.data.Deaths * 1000)) + " people dead"
             }
             l.note = Object.assign({}, l.note, { title: "Calamity: " + l.data.Calamity,
             label: "" + label });
@@ -413,9 +422,18 @@ function drawSceneTwo(){
             if (normalize) {
                 label = "Death rate increased by " + l.data.NormalizedDeaths.toFixed(3) + "% from 1955" 
             } else {
-                label = "" + Math.round(l.data.Deaths * 1000) + " people dead"
+                label = "" + numberWithCommas(Math.round(l.data.Deaths * 1000)) + " people dead"
             }
-            l.note = Object.assign({}, l.note, { title: "Year: " + l.data.Year,
+            titleVal = l.data.Year
+            if (l.data.Year == 1959){
+                titleVal = titleVal + " (Start of Famine)"
+            } else if (l.data.Year == 1960) {
+                titleVal = titleVal + " (Peak of Famine)"
+            } else if (l.data.Year == 1961) {
+                titleVal = titleVal + " (End of Famine)"
+            }
+            l.note = Object.assign({}, l.note, {
+                title: "Year: " + titleVal,
             label: "" + label });
             l.subject = { radius: 5 };
 
@@ -634,7 +652,7 @@ function drawSceneThree(){
             if (normalize) {
                 label = "In 2021 death rate increased by " + l.data.NormalizedDeaths.toFixed(3) + "% from 2015" 
             } else {
-                label = "" + Math.round(l.data.Deaths * 1000) + " people dead in the year 2021"
+                label = "" + numberWithCommas(Math.round(l.data.Deaths * 1000)) + " people dead in the year 2021"
             }
             l.note = Object.assign({}, l.note, { title: "Region: " + l.data.Region,
             label: "" + label });
@@ -1028,4 +1046,10 @@ function handleChange() {
         unsetNormalizeFlag(-1)
     }
     handleRegionChange()
+}
+
+function numberWithCommas(x) {
+    var parts = x.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
 }
