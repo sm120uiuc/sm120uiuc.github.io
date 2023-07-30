@@ -374,7 +374,7 @@ function drawSceneTwo(){
                 Deaths: 29771.578999999998,
                 NormalizedDeaths: 0.9916208980897604,
             },
-            dy: -10,
+            dy: -3,
             dx: 142,
             note: { align: "middle" }
         },
@@ -425,12 +425,16 @@ function drawSceneTwo(){
                 label = "" + numberWithCommas(Math.round(l.data.Deaths * 1000)) + " people dead"
             }
             titleVal = l.data.Year
-            if (l.data.Year == 1959){
+            if (l.data.Year == 1958) {
+                titleVal = titleVal + " (Before Famine)"
+            } else if (l.data.Year == 1959){
                 titleVal = titleVal + " (Start of Famine)"
             } else if (l.data.Year == 1960) {
                 titleVal = titleVal + " (Peak of Famine)"
             } else if (l.data.Year == 1961) {
                 titleVal = titleVal + " (End of Famine)"
+            } else if (l.data.Year == 1962) {
+                titleVal = titleVal + " (After Famine)"
             }
             l.note = Object.assign({}, l.note, {
                 title: "Year: " + titleVal,
@@ -779,13 +783,7 @@ function drawSceneFour(){
                             "Asia": "#e6194B",
                             "Europe": "#808000",
                             "Oceania": "#f58231"}
-        var regionColorsLegend = [
-            {name: "Africa", color: "#469990"},
-            {name: "Americas", color: "#3cb44b"},
-            {name: "Asia", color: "#e6194B"},
-            {name: "Europe", color: "#808000"},
-            {name: "Oceania", color: "#f58231"}
-        ];
+
         for (let i = 0; i < uniqueRegionsArray.length; i++) {
             element = uniqueRegionsArray[i]
             color = regionColors[element]
@@ -815,7 +813,18 @@ function drawSceneFour(){
                 .style("stroke-width", "2");
         }        
         handleRegionChange()
-        //Initialize legend
+
+        var regionColorsLegend = [
+            { name: "Africa", color: "#469990" },
+            { name: "Americas", color: "#3cb44b" },
+            { name: "Asia", color: "#e6194B" },
+            { name: "Europe", color: "#808000" },
+            { name: "Oceania", color: "#f58231" }
+        ];
+
+        if (selectedRegion != "All") {
+            regionColorsLegend = [{ name: selectedRegion, color: regionColors[selectedRegion]}]
+        }
 		var legendItemSize = 12;
         var legendSpacing = 4;
 		var xOffset = 375;
