@@ -1,0 +1,80 @@
+.overlay {
+    fill: none;
+    pointer-events: all;
+}
+
+.focus circle {
+    fill: none;
+    fill: steelblue;
+}
+
+.focus text {
+    font-size: 14px;
+}
+
+.tooltip {
+    position: absolute;
+    padding: 8px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 4px;
+    pointer-events: none;
+}
+
+.tooltip-date, .tooltip-likes {
+    font-weight: bold;
+}
+
+.line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 2px;
+}
+
+path { 
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none;
+}
+
+.dot {
+    fill: #000000;
+    stroke: #fff;
+}
+
+.ticks path {stroke:darkgray;opacity:0.3} 
+
+.content {
+    max-width: 800px;
+    margin: auto;
+    background-color:whitesmoke;
+}
+
+.center {
+    text-align: center;
+}
+
+.annotation-test text {
+    font-size: 12px;
+    fill: black;
+}
+  /* Style for the circle callout */
+.annotation-test circle {
+    fill: steelblue;
+    stroke: #fff;
+    stroke-width: 2;
+}
+  /* Hidden class to initially hide connectors and notes */
+.annotation-test .hidden {
+    display: none;
+}
+
+.subject {
+    fill: white;
+    stroke: black;
+    fill-opacity: 0;
+}
+
+#selector-div {
+    margin-top: 10;
+}

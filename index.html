@@ -1,0 +1,107 @@
+<html>
+    <head>
+        <title>Narrative Visualization</title>
+        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+        <link href="d3.css" rel="stylesheet" type="text/css">
+    </head>
+
+<body>
+    <!-- Menu section -->
+    <div id="step0" class="container-fluid center" style="height:250px">
+        <div>
+            <p>
+                <h1>1. World Birth and Death Trend</h1>
+                This scene depicts the global trends of birth and death from <b>1950 to 2023</b>.</br>
+                You have the option to view it either in the normalized scale or in the absolute scale. If you wish to see it in the absolute scale please uncheck the checkbox below.</br>
+                <br>
+                While both birth and death data show an overall upward trend, there are two significant spikes in the death data, indicating major calamities during the periods <b>1959 - 1961</b> and <b>2019 - 2021</b>.</br>
+                Feel free to <b>move your mouse</b> over the black circles to know more about the events.
+                Let's now delve into these periods for a more detailed analysis.
+            </p>
+            <button id="to_step1" type="button">Next Slide</button>
+        </div>
+    </div>
+
+    <div id="step1" class="container-fluid center" style="display:none;height:250px">
+        <div>
+            <p>
+                <h1>2. Great Chinese Famine (1959 - 1961)</h1>
+                This scene shows the death trend for each region during <b>1955 - 1965</b>.</br>
+                You have the option to view it either in the normalized scale or in the absolute scale. If you wish to see it in the absolute scale please uncheck the checkbox below.</br>
+                <br>
+                The Asia region seem to have been affected the most during this period. The other regions are relatively having a normal trend during this period.</br>
+                Feel free to <b>move your mouse</b> over the black circles to know more about the events.
+            </p>
+            <button id="to_step2" type="button">Next Slide</button>
+        </div>
+    </div>
+
+    <div id="step2" class="container-fluid center" style="display:none;height:250px">
+        <div>
+            <p>
+                <h1>3. Covid 19 (2019 - Present)</h1>
+                This scene shows the death trend for each region during <b>2015 - 2023</b>.</br>
+                You have the option to view it either in the normalized scale or in the absolute scale. If you wish to see it in the absolute scale please uncheck the checkbox below.</br>
+                <br>
+                All most all the regions have an increased death rate during the <b>2020 - 2021</b> period. Americas Region has the steepest increase in % of death from 2015, while Asia lost the most lives during this period.<br>
+                Feel free to <b>move your mouse</b> over the black circles to know more about the events.
+            </p>
+            <button id="to_step3" type="button">Next Slide</button>
+        </div>
+    </div>
+
+    <div id="step3" class="container-fluid center" style="display:none;height:250px">
+        <div>
+            <p>
+                <h1>4. Playground!</h1>
+                This scene allows you to meddle around with the data. <br>
+                You can choose the start year, end year and regions to see how the death rate correlates across different regions and years.<br>
+                The start year and end year will act like a zoom to focus on the data points you are really interested in.<br>
+                As always, you have the option to view it either in the normalized scale or in the absolute scale. If you wish to see it in the absolute scale please uncheck the checkbox below.</br>
+            </p>
+            <button id="restart" type="button">Start Again</button>
+        </div>
+        <div id="selector-div">
+            <div id="region_selector"> Regions Selected </div>
+            <div id="start_year_selector"> Start Year Selected </div>
+            <div id="end_year_selector"> End Year Selected </div>
+        </div>
+    </div>
+    
+    <div class="content" id="my_dataviz">
+        <svg id="chart"></svg>
+    </div>
+    <svg class="" id="legend" width="600"></svg>
+    <div class="center">
+        <label for="myCheck">Normalize Data:</label> 
+        <input type="checkbox" id="myCheck" checked onclick="myFunction()">
+    </div>
+    <!-- Include D3 library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js" integrity="sha512-M7nHCiNUOwFt6Us3r8alutZLm9qMt4s9951uo8jqO4UwJ1hziseL6O3ndFyigx6+LREfZqnhHxYjKRJ8ZQ69DQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Include d3-annotation library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.5.1/d3-annotation.min.js" integrity="sha512-iBAeBWWWFb8HqSBcrqcz98iIpuVH1la39dEYHtyQ/pGpeCQTQVvLJOWAuhv2Q7JSHp9k7hWA7sGxU3hHJe+tFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Include topoJSON Client library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js" integrity="sha512-4UKI/XKm3xrvJ6pZS5oTRvIQGIzZFoXR71rRBb1y2N+PbwAsKa5tPl2J6WvbEvwN3TxQCm8hMzsl/pO+82iRlg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="load.js" charset="utf-8"></script>
+    <script>
+        initializeConfiguration()
+        startDrawing(0);
+    </script>
+    <script>
+        function myFunction() {
+          var checkBox = document.getElementById("myCheck");
+          if (checkBox.checked == true){
+            setNormalizeFlag(-1)
+          } else {
+            unsetNormalizeFlag(-1)
+          }
+        }
+     </script>
+<div class="container-fluid center" style="height:50px;margin-top:50px;">
+    <i>Data used for this project comes from <a href="https://population.un.org/wpp/Download/Standard/CSV/">The United Nations Department of Economic and Social Affairs Population Division</a></i> and <a href="https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes/blob/master/all/all.csv">Countries Data from Github</a><br/>
+</div>
+
+</body>
+<!-- any D3 or SVG related code needs to be stay below of D3 inclusion or SVG so that it exists when javascript code try to access it. -->
+
+</html>
