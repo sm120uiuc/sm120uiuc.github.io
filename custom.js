@@ -42,27 +42,27 @@ function initializeConfiguration() {
 }   
 
 
-function onToStepOne() {
-    document.getElementById("step0").style.display = "None"
-    document.getElementById("step1").style.display = ""
+function onToSceneOne() {
+    document.getElementById("scene0").style.display = "None"
+    document.getElementById("scene1").style.display = ""
     setNormalizeFlag(1)
 }
 
-function onToStepTwo() {
-    document.getElementById("step1").style.display = "None"
-    document.getElementById("step2").style.display = ""
+function onToSceneTwo() {
+    document.getElementById("scene1").style.display = "None"
+    document.getElementById("scene2").style.display = ""
     setNormalizeFlag(2)
 }
 
-function onToStepThree() {
-    document.getElementById("step2").style.display = "None"
-    document.getElementById("step3").style.display = ""
+function onToSceneThree() {
+    document.getElementById("scene2").style.display = "None"
+    document.getElementById("scene3").style.display = ""
     setNormalizeFlag(3)
 }
 
-function onToRestart() {
-    document.getElementById("step3").style.display = "None"
-    document.getElementById("step0").style.display = ""
+function onToSceneZero() {
+    document.getElementById("scene3").style.display = "None"
+    document.getElementById("scene0").style.display = ""
     yearStart = 1950;
     yearEnd = 2023;
     selectedRegion = "All";
