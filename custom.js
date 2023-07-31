@@ -188,7 +188,7 @@ function drawSceneOne(){
                 Year: 2021,
                 Deaths: 69236.514,
                 NormalizedDeaths: 1.41941781381553,
-                Calamity: "Covid-19 (2019 - Present)"
+                Calamity: "Covid-19 (2019 - 2022)"
             },
             dy: 37,
             dx: -142,
