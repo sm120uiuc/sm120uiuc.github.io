@@ -23,24 +23,18 @@ function initializeConfiguration() {
     innerChart = chart.append("g")
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-// x,y values
     xScale = d3.scaleLinear().range([0,width]);
     yScale = d3.scaleLinear().range([height, 0]);    
 
-// x,y axis
     xAxis = d3.axisBottom().scale(xScale);
     yAxis = d3.axisLeft().scale(yScale);
 
-// line chart related
     valueline = d3.line()
     .x(function(d){ return xScale(d.date);})
     .y(function(d){ return yScale(d.value);})
     .curve(d3.curveLinear);
 
-
-// Adds the svg canvas
     g = innerChart
-    // .call(zoom)
     .attr("width", svgWidth)
     .attr("height", svgHeight)
     .append("g")
@@ -104,7 +98,7 @@ function startDrawing(dataTopic) {
 
 function drawSceneOne(){
     return function(data) {
-        // console.log(data)
+
         years = data.map(function(d) {return parseInt(d.Year)})
         yearStart = Math.min(...years)
         yearEnd = Math.max(...years)
@@ -136,7 +130,7 @@ function drawSceneOne(){
             .attr("cx", function (d) { return xScale(parseInt(d['Year'])); } )
             .attr("cy", function (d) { if (!normalize) {return yScale(parseFloat(d["Births"]));}else{return yScale(parseFloat(d["NormalizedBirths"]));}})
             .attr("r", 2)
-            // .attr("transform", "translate(" + 100 + "," + 100 + ")")
+
             .style("fill", "#3cb44b");
 
         var line = d3.line()
@@ -147,7 +141,7 @@ function drawSceneOne(){
             innerChart.append("path")
             .datum(data) 
             .attr("class", "line births") 
-            // .attr("transform", "translate(" + 100 + "," + 100 + ")")
+
             .attr("d", line)
             .style("fill", "none")
             .style("stroke", "#3cb44b")
@@ -162,7 +156,7 @@ function drawSceneOne(){
             .attr("cx", function (d) { return xScale(parseInt(d['Year'])); } )
             .attr("cy", function (d) { if (!normalize) {return yScale(parseFloat(d["Deaths"]));}else{return yScale(parseFloat(d["NormalizedDeaths"]));}})
             .attr("r", 2)
-            // .attr("transform", "translate(" + 100 + "," + 100 + ")")
+
             .style("fill", "#e6194B");
         var line = d3.line()
             .x(function(d) { return xScale(parseInt(d['Year'])); }) 
@@ -172,12 +166,12 @@ function drawSceneOne(){
             innerChart.append("path")
             .datum(data) 
             .attr("class", "line deaths") 
-            // .attr("transform", "translate(" + 100 + "," + 100 + ")")
+
             .attr("d", line)
             .style("fill", "none")
             .style("stroke", "#e6194B")
             .style("stroke-width", "2");
-        //Add annotations
+        
         var labels = [{
             data: {
                 Year: 1960,
@@ -250,7 +244,7 @@ function drawSceneOne(){
             { name: "Births", color: "#3cb44b" },
         ];
 
-        //Initialize legend
+        
 		var legendItemSize = 12;
         var legendSpacing = 4;
 		var xOffset = 375;
@@ -260,7 +254,7 @@ function drawSceneOne(){
             .selectAll('.legendItem')
             .data(worldDataLengend);
 			
-		//Create legend items
+		
 		legend
 			.enter()
 			.append('rect')
@@ -275,7 +269,7 @@ function drawSceneOne(){
                     return `translate(${x}, ${y})`;
                 });
 		
-		//Create legend labels
+		
 		legend
 			.enter()
 			.append('text')
@@ -288,7 +282,7 @@ function drawSceneOne(){
 function drawSceneTwo(){
     return function(data) {
         filterData = data.filter(d => parseInt(d["Year"]) >= 1955 &&   parseInt(d["Year"]) <= 1965)
-        // console.log(filterData)
+
         years = filterData.map(function(d) {return parseInt(d.Year)})
         yearStartInterim = Math.min(...years)
         yearEndInterim = Math.max(...years)
@@ -357,7 +351,7 @@ function drawSceneTwo(){
                 .style("stroke", color)
                 .style("stroke-width", "2");
         }
-        //Add annotations
+        
         var labels = [{
             data: {
                 Year: 1958,
@@ -471,7 +465,7 @@ function drawSceneTwo(){
         innerChart.append("g").attr("class", "annotation-test").call(makeAnnotations);
         innerChart.selectAll("g.annotation-connector, g.annotation-note").classed("hidden", true);
 
-        //Initialize legend
+        
 		var legendItemSize = 12;
         var legendSpacing = 4;
 		var xOffset = 375;
@@ -481,7 +475,7 @@ function drawSceneTwo(){
             .selectAll('.legendItem')
             .data(regionColorsLegend);
 			
-		//Create legend items
+		
 		legend
 			.enter()
 			.append('rect')
@@ -496,7 +490,7 @@ function drawSceneTwo(){
                     return `translate(${x}, ${y})`;
                 });
 		
-		//Create legend labels
+		
 		legend
 			.enter()
 			.append('text')
@@ -509,7 +503,7 @@ function drawSceneTwo(){
 function drawSceneThree(){
     return function(data) {
         filterData = data.filter(d => parseInt(d["Year"]) >= 2015 &&   parseInt(d["Year"]) <= 2023)
-        // console.log(filterData)
+
         years = filterData.map(function(d) {return parseInt(d.Year)})
         yearStartInterim = Math.min(...years)
         yearEndInterim = Math.max(...years)
@@ -575,7 +569,7 @@ function drawSceneThree(){
                 .style("stroke", color)
                 .style("stroke-width", "2");
         }
-        //Add annotations
+        
         var labels = [{
             data: {
                 Region: "Africa",
@@ -695,7 +689,7 @@ function drawSceneThree(){
         }
         
 
-        //Initialize legend
+        
 		var legendItemSize = 12;
         var legendSpacing = 4;
 		var xOffset = 375;
@@ -705,7 +699,7 @@ function drawSceneThree(){
             .selectAll('.legendItem')
             .data(regionColorsLegend);
 			
-		//Create legend items
+		
 		legend
 			.enter()
 			.append('rect')
@@ -720,7 +714,7 @@ function drawSceneThree(){
                     return `translate(${x}, ${y})`;
                 });
 		
-		//Create legend labels
+		
 		legend
 			.enter()
 			.append('text')
@@ -738,7 +732,7 @@ function drawSceneFour(){
         } else {
             filterData = filterDataYear
         }
-        // console.log(filterData)
+
         years = filterData.map(function(d) {return parseInt(d.Year)})
         yearStartInterim = Math.min(...years)
         yearEndInterim = Math.max(...years)
@@ -824,7 +818,7 @@ function drawSceneFour(){
             .selectAll('.legendItem')
             .data(regionColorsLegend);
 			
-		//Create legend items
+		
 		legend
 			.enter()
 			.append('rect')
@@ -839,7 +833,7 @@ function drawSceneFour(){
                     return `translate(${x}, ${y})`;
                 });
 		
-		//Create legend labels
+		
 		legend
 			.enter()
 			.append('text')
@@ -853,8 +847,8 @@ function initializeChart(xScaleStart, xScaleEnd, xScaleText, yScaleStart, yScale
     xScale.domain([xScaleStart, xScaleEnd]);
     yScale.domain([yScaleStart, yScaleEnd]);
 
-    // Add the X Axis
-    // console.log("add x axis");
+
+
     innerChart
         .append('g')
         .attr('transform', "translate(0," + height + ")")
@@ -868,8 +862,8 @@ function initializeChart(xScaleStart, xScaleEnd, xScaleText, yScaleStart, yScale
         .style("text-anchor", "middle")
         .text(xScaleText);
 
-    // console.log("add y axis");
-    // Add the Y Axis
+
+
     innerChart
         .append('g')
         .call(yAxis)
@@ -954,8 +948,8 @@ function unHideElementsByClass(className) {
 }
 
 function addRegionList(){
-    // console.log("In the addRegionList")
-    // console.log(globalUniqueRegionsArray)
+
+
     d3.select("body")
         .select("#region_selector")
         .append("select")

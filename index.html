@@ -9,8 +9,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.5.1/d3-annotation.min.js"
             integrity="sha512-iBAeBWWWFb8HqSBcrqcz98iIpuVH1la39dEYHtyQ/pGpeCQTQVvLJOWAuhv2Q7JSHp9k7hWA7sGxU3hHJe+tFg=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="load.js" charset="utf-8"></script>
-        <link href="d3.css" rel="stylesheet" type="text/css">
+        <script src="custom.js" charset="utf-8"></script>
+        <link href="custom.css" rel="stylesheet" type="text/css">
     </head>
 
 <body>
@@ -19,12 +19,12 @@
         <div>
             <p>
                 <h1>1. World Birth and Death Trend</h1>
-                This scene depicts the global trends of birth and death from <b>1950 to 2023</b>.</br>
-                You have the option to view it either in the normalized scale or in the absolute scale. If you wish to see it in the absolute scale please uncheck the checkbox below.</br>
+                This scene depicts the global trends for birth and death from <b>1950 to 2023</b>.<br>
+                You have the option to view it either in the normalized scale or in the absolute scale. If you wish to see it in the absolute scale please uncheck the checkbox below.<br>
                 <br>
-                While both birth and death data show an overall upward trend, there are two significant spikes in the death data, indicating major calamities during the periods <b>1959 - 1961</b> and <b>2019 - 2021</b>.</br>
-                Feel free to <b>move your mouse</b> over the black circles to know more about the events.
-                Let's now delve into these periods for a more detailed analysis.
+                While both birth and death data show an overall upward trend, there are two significant spikes in the death data, indicating major calamities during the periods <b>1959 - 1961</b> and <b>2019 - 2021</b>.<br>
+                Feel free to <b>move your mouse</b> over the black circles to know more about these events.<br>
+                We will be analysing these periods thoroughly in the next few slides.
             </p>
             <button id="to_step1" type="button" onclick="onToStepOne()">Next Slide</button>
         </div>
@@ -34,10 +34,10 @@
         <div>
             <p>
                 <h1>2. Great Chinese Famine (1959 - 1961)</h1>
-                This scene shows the death trend for each region during <b>1955 - 1965</b>.</br>
-                You have the option to view it either in the normalized scale or in the absolute scale. If you wish to see it in the absolute scale please uncheck the checkbox below.</br>
+                This scene shows the death trend for each region during <b>1955 - 1965</b>.<br>
+                You have the option to view it either in the normalized scale or in the absolute scale. If you wish to see it in the absolute scale please uncheck the checkbox below.<br>
                 <br>
-                The Asia region seem to have been affected the most during this period. The other regions are relatively having a normal trend during this period.</br>
+                The Asian region seems to have been affected the most during this period, with a spike in the death rate. <br> The other regions are experiencing smoother trends during the same period.<br>
                 Feel free to <b>move your mouse</b> over the black circles to know more about the events.
             </p>
             <button id="to_step2" type="button" onclick="onToStepTwo()">Next Slide</button>
@@ -48,10 +48,11 @@
         <div>
             <p>
                 <h1>3. Covid 19 (2019 - Present)</h1>
-                This scene shows the death trend for each region during <b>2015 - 2023</b>.</br>
-                You have the option to view it either in the normalized scale or in the absolute scale. If you wish to see it in the absolute scale please uncheck the checkbox below.</br>
+                This scene shows the death trend for each region during <b>2015 - 2023</b>.<br>
+                You have the option to view it either in the normalized scale or in the absolute scale. If you wish to see it in the absolute scale please uncheck the checkbox below.<br>
                 <br>
-                All most all the regions have an increased death rate during the <b>2020 - 2021</b> period. Americas Region has the steepest increase in % of death from 2015, while Asia lost the most lives during this period.<br>
+                Almost all the regions experienced an increased death rate during the <b>2020 - 2021</b> period.<br>
+                The Americas Region had the steepest increase in the percentage of deaths from 2015, while Asia lost the most lives during this period.<br>
                 Feel free to <b>move your mouse</b> over the black circles to know more about the events.
             </p>
             <button id="to_step3" type="button" onclick="onToStepThree()">Next Slide</button>
@@ -62,11 +63,10 @@
         <div>
             <p>
                 <h1>4. Exploration</h1>
-                There might be other calamities occurred without causing significant spikes in the global death trend due to population imbalances in each regions. <br>
-                In this scene you will put on your exploring hat and try finding any spikes in death data over different time periods. <br>
-                You can choose the start year, end year and regions to see how the death rate correlates across different regions and years.<br>
-                The start year and end year will act like a zoom to focus on the data points you are really interested in.<br>
-                As always, you have the option to view it either in the normalized scale or in the absolute scale. If you wish to see it in the absolute scale please uncheck the checkbox below.</br>
+                Other calamities might have occurred without causing significant spikes in the global death trend due to population imbalances in each region.<br>
+                In this scene you will put on your explorer's hat and try to find any spikes in death data over different time periods.<br>
+                You can select the region, start and end years to focus on the data points you are really interested in.<br>
+                As always, you have the option to view it either in the normalized scale or in the absolute scale. If you wish to see it in the absolute scale please uncheck the checkbox below.<br>
             </p>
             <button id="restart" type="button" onclick="onToRestart()">Start Again</button>
         </div>
