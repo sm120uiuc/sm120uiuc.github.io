@@ -5,11 +5,6 @@ var selectedRegion = "All";
 var globalUniqueRegionsArray = [];
 var globalUniqueYearsArray = [];
 
-var worldDataLengend = [
-    {name: "Deaths", color: "#e6194B"},
-    {name: "Births", color: "#3cb44b"},
-];
-
 const margin = {top: 20, right: 120, bottom: 50, left: 75},
     svgWidth = 900,
     svgHeight = 600,
@@ -52,44 +47,35 @@ function initializeConfiguration() {
     .attr("transform", `translate(${margin.left},${margin.top})`); 
 }   
 
-$('.close').click(function() {
-    $('.alert').hide();
-})
 
-$('.alert').hide();
+function onToStepOne() {
+    document.getElementById("step0").style.display = "None"
+    document.getElementById("step1").style.display = ""
+    setNormalizeFlag(1)
+}
 
-$("#to_step1").click(function() {
-    hide('#step0');
-    show('#step1');
-    setNormalizeFlag(1);
-})
-
-$("#to_step2").click(function() {
-    hide('#step1');
-    show('#step2');
+function onToStepTwo() {
+    document.getElementById("step1").style.display = "None"
+    document.getElementById("step2").style.display = ""
     setNormalizeFlag(2)
-})
+}
 
-$("#to_step3").click(function() {
-    hide('#step2');
-    show('#step3');
+function onToStepThree() {
+    document.getElementById("step2").style.display = "None"
+    document.getElementById("step3").style.display = ""
     setNormalizeFlag(3)
-})
+}
 
-$("#restart").click(function() {
-    hide('#step3');
-    show('#step0');
+function onToRestart() {
+    document.getElementById("step3").style.display = "None"
+    document.getElementById("step0").style.display = ""
     yearStart = 1950;
     yearEnd = 2023;
     selectedRegion = "All";
     globalUniqueRegionsArray = [];
     globalUniqueYearsArray = [];
     setNormalizeFlag(0)
-})
-
-$("input[name='type']").click(function() {
-    draw('WLD', $('input:radio[name=type]:checked').val());
-})
+}
 
 function startDrawing(dataTopic) {
     if (dataTopic == 0) {
@@ -259,6 +245,10 @@ function drawSceneOne(){
 
         innerChart.append("g").attr("class", "annotation-test").call(makeAnnotations);
         innerChart.selectAll("g.annotation-connector, g.annotation-note").classed("hidden", true);
+        worldDataLengend = [
+            { name: "Deaths", color: "#e6194B" },
+            { name: "Births", color: "#3cb44b" },
+        ];
 
         //Initialize legend
 		var legendItemSize = 12;
@@ -449,7 +439,7 @@ function drawSceneTwo(){
             labels[1].dy = -10
             labels[2].dy = 0
             labels[2].dx = 130
-            labels[3].dy = 0
+            labels[3].dy = -10
             labels[4].dy = 25
         }
 
@@ -894,15 +884,6 @@ function initializeChart(xScaleStart, xScaleEnd, xScaleText, yScaleStart, yScale
         .text(yScaleText);
 }
 
-// utility functions
-function show(step){
-    $(step).show();
-}
-
-function hide(step){
-    $(step).hide();
-}
-
 function setNormalizeFlag(scene){
     normalize = true
     resetCheckBoxChecked()
@@ -986,7 +967,7 @@ function addRegionList(){
         .attr("value", function(d){ return d; })
         .text(function (d, i){return d;});
     
-        document.getElementById("regions").value = selectedRegion;
+    document.getElementById("regions").value = selectedRegion;
     d3.select("body").select("#region_selector").select("select").on("change", function(){
         region = d3.select(this).property('value');
         selectedRegion = region;
